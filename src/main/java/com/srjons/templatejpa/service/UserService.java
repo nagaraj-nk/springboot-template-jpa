@@ -2,13 +2,17 @@ package com.srjons.templatejpa.service;
 
 import com.srjons.templatejpa.entity.User;
 import com.srjons.templatejpa.repo.UserRepo;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
 public class UserService {
 
+    @Resource
     private UserRepo userRepo;
 
     public User createUser(User user) {
@@ -27,5 +31,9 @@ public class UserService {
             log.error("error=" + e.getMessage());
             return false;
         }
+    }
+
+    public List<User> findAllUsers() {
+        return userRepo.findAll();
     }
 }
